@@ -5,10 +5,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+@Builder
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -26,12 +28,5 @@ public class Customer {
     private String fullName;
     @Column(nullable = false)
     private boolean enable;
-    
-    public Customer(String accountNum, String cpf, String fullName, boolean enable) {
-        this.accountNum = accountNum;
-        this.cpf = cpf;
-        this.fullName = fullName;
-        this.enable = enable;
-    }
 
 }
