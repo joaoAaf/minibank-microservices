@@ -30,7 +30,7 @@ public class CustomerController extends BaseController {
     }
 
     @GetMapping
-    public ResponseEntity<Object> getMethodName() {
+    public ResponseEntity<Object> getAllCustomer() {
         try {
             var customers = service.getAll();
             if (customers.size() == 0) {
