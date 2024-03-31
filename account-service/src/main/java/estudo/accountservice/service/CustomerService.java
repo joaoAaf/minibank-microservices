@@ -1,5 +1,6 @@
 package estudo.accountservice.service;
 
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 import estudo.accountservice.dto.CustomerSave;
@@ -30,6 +31,19 @@ public class CustomerService {
     public CustomerView save(CustomerSave customerDto) {
         Customer customer = fromDto(customerDto);
         return showCustomer(repo.save(customer));
+    }
+
+    // public List<CustomerView> getAll() {
+    //     var customers = repo.findAll();
+    //     return customers.stream()
+    //         .map(c -> showCustomer(c))
+    //         .collect(Collectors.toList());
+    // }
+
+    public List<Customer> getAll() {
+        var customers = repo.findAll();
+        System.out.println(customers);
+        return customers;
     }
 
 }
