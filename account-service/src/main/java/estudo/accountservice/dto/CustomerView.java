@@ -1,5 +1,5 @@
 package estudo.accountservice.dto;
 
-public record CustomerView(String accountNum, String cpf, String fullName) {
+public record CustomerView(Long account, String cpf, String name) {
 
 }

@@ -17,15 +17,14 @@ public class CustomerService {
     public Customer fromDto(CustomerSave customerDto) {
         return Customer
             .builder()
-            .accountNum("1234")
             .cpf(customerDto.cpf())
-            .fullName(customerDto.fullName())
+            .name(customerDto.name())
             .enable(true)
             .build();
     }
 
     public CustomerView showCustomer(Customer customer) {
-        return new CustomerView(customer.getAccountNum(), customer.getCpf(), customer.getFullName());
+        return new CustomerView(customer.getAccount(), customer.getCpf(), customer.getName());
     }
 
     public CustomerView save(CustomerSave customerDto) {

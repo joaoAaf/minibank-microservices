@@ -10,6 +10,6 @@ import estudo.accountservice.model.Customer;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-    Optional<Customer> findByAccountNum(String accountNum);
+    Optional<Customer> findByAccount(Long account);
 
 }

@@ -1,5 +1,5 @@
 package estudo.accountservice.dto;
 
-public record CustomerSave(String cpf, String fullName) {
+public record CustomerSave(String cpf, String name) {
 
 }
