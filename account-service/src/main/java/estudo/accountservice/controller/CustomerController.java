@@ -23,7 +23,7 @@ public class CustomerController extends BaseController {
             return getResponse(service.save(customerDto),
                     "Conta Registrada com Sucesso!", HttpStatus.CREATED);
         } catch (Exception e) {
-            return getResponse(e.getMessage(), HttpStatus.SERVICE_UNAVAILABLE);
+            return getResponse(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

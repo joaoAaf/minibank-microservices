@@ -8,11 +8,11 @@ import lombok.Data;
 
 @Builder
 @Data
+// Se um atributo for nulo, o mesmo será excluido do Json
+@JsonInclude(value = Include.NON_NULL)
 public class ResponseData {
 
         private Object data;
-        // Se for nulo, o mesmo será excluido do Json
-        @JsonInclude(value = Include.NON_NULL)
         private String msg;
         private String port;
 
