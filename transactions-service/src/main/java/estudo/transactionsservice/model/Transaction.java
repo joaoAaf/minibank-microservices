@@ -9,14 +9,20 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import com.mongodb.lang.NonNull;
 
 import estudo.transactionsservice.util.Operation;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Document(collection = "transaction")
 public class Transaction {
 
     @Id
-    private String Id;
+    private String id;
     @NonNull
     private Long account;
     @NonNull
