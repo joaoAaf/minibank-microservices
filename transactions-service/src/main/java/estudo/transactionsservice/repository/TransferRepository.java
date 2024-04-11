@@ -10,6 +10,6 @@ import estudo.transactionsservice.model.Transfer;
 @Repository
 public interface TransferRepository extends MongoRepository<Transfer, String> {
 
-    List<Transfer> getByTransfersAccountFrom(Long account);
+    List<Transfer> getTransfersByAccountFrom(Long account);
     
 }
