@@ -52,7 +52,7 @@ public class CustomerController extends BaseController {
             if (customer.isPresent()) {
                 return getResponse(customer, "Conta encontrada!", HttpStatus.OK);
             }
-            return getResponse(String.format("A conta nº %d não existe.", account), HttpStatus.NOT_FOUND);   
+            return getResponse(String.format("A conta nº %d não existe.", account), HttpStatus.OK);   
         } catch (Exception e) {
             return getResponse(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
