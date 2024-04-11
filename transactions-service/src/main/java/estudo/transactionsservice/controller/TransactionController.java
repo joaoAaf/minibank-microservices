@@ -2,6 +2,8 @@ package estudo.transactionsservice.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +36,20 @@ public class TransactionController extends BaseController {
         } catch (Exception e) {
             return getResponse(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("{account}")
+    public ResponseEntity<Object> getStatement(@PathVariable Long account) {
+        try {
+            var isValid = validation.validateAccount(account);
+            if (isValid instanceof Boolean && (Boolean) isValid) {
+                return getResponse(service.accountStatement(account), HttpStatus.OK);
+            }
+            return getResponse((String) isValid, HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return getResponse(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
 }
