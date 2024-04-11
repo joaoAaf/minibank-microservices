@@ -19,15 +19,18 @@ public class TransactionController extends BaseController {
 
     private final TransactionService service;
     private final AccountValidationService validation;
-    
+
     @PostMapping
     public ResponseEntity<Object> postTransaction(@RequestBody TransactionRequest transactionRequest) {
         try {
-            validation.validateAccount(transactionRequest.account());
-            var transaction = service.save(transactionRequest);
-            String msg = String.format("Operação %s registrada com sucesso", 
-                transactionRequest.operation().toString());
-            return getResponse(transaction, msg, HttpStatus.CREATED);
+            var isValid = validation.validateAccount(transactionRequest.account());
+            if (isValid instanceof Boolean && (Boolean) isValid) {
+                var transaction = service.save(transactionRequest);
+                String msg = String.format("Operação %s registrada com sucesso",
+                        transactionRequest.operation().toString());
+                return getResponse(transaction, msg, HttpStatus.CREATED);
+            }
+            return getResponse((String) isValid, HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             return getResponse(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }

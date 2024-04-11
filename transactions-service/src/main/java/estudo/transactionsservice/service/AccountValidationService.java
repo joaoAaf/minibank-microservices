@@ -15,10 +15,10 @@ public class AccountValidationService {
 
     private final AccountRequest request;
 
-    public boolean validateAccount(Long account) {
+    public Object validateAccount(Long account) {
         var response = request.getUserAccount(account);  
         if (Objects.isNull(response.data())) {
-            throw new RuntimeException(response.msg());
+            return response.msg();
         }
         return true;
     }
