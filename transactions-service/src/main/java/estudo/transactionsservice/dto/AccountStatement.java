@@ -13,7 +13,7 @@ public class AccountStatement {
     private BigDecimal balance = BigDecimal.ZERO;
     
     public void calculateBalance() {
-        transactions.forEach(t -> this.balance.add(t.value()));
+        transactions.forEach(t -> this.balance = this.balance.add(t.value()));
     }
 
 }

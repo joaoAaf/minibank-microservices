@@ -1,5 +1,7 @@
 package estudo.transactionsservice.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import estudo.transactionsservice.dto.AccountStatement;
@@ -21,9 +23,15 @@ public class TransactionService extends BaseService {
     public AccountStatement accountStatement(Long account) {
         var statement = new AccountStatement();
         statement.setAccount(account);
-        statement.setTransactions(null);
+        statement.setTransactions(getAllTransactions(account));
         statement.calculateBalance();
         return statement;
+    }
+
+    private List<TransactionView> getAllTransactions(Long account) {
+        var transactions = repo.getTransactionsByAccount(account);
+        // itera sobre a lista de transações e chama o método toDto para cada elemento da lista
+        return transactions.stream().map(this::toDto).toList();
     }
 
 }
