@@ -11,7 +11,7 @@ import lombok.Builder;
 
 @Builder
 @JsonInclude(value = Include.NON_NULL)
-public record TransactionView(String id, Long account, LocalDateTime dateTime, 
+public record TransactionView(String id, Long accountFrom, Long accountTo, LocalDateTime dateTime, 
     BigDecimal value, Operation operation) {
 
 }
