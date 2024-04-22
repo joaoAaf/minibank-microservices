@@ -11,5 +11,6 @@ import estudo.transactionsservice.model.Transfer;
 public interface TransferRepository extends MongoRepository<Transfer, String> {
 
     List<Transfer> getTransfersByAccountFrom(Long account);
+    List<Transfer> getTransfersByAccountTo(Long account);
     
 }
