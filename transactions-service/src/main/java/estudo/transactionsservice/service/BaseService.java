@@ -7,6 +7,7 @@ import estudo.transactionsservice.dto.TransactionView;
 import estudo.transactionsservice.dto.TransferRequest;
 import estudo.transactionsservice.model.Transaction;
 import estudo.transactionsservice.model.Transfer;
+import estudo.transactionsservice.util.Operation;
 
 public class BaseService {
 
@@ -45,6 +46,17 @@ public class BaseService {
                 .accountTo(transfer.getAccountTo())
                 .dateTime(transfer.getDateTime())
                 .value(transfer.getValue())
+                .build();
+    }
+
+    protected TransactionView toDto(Transfer transfer, Operation operation) {
+        return TransactionView.builder()
+                .id(transfer.getId())
+                .accountFrom(transfer.getAccountFrom())
+                .accountTo(transfer.getAccountTo())
+                .dateTime(transfer.getDateTime())
+                .value(transfer.getValue())
+                .operation(operation)
                 .build();
     }
 
