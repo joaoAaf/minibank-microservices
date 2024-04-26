@@ -1,7 +1,6 @@
 package estudo.transactionsservice.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -22,18 +21,16 @@ public class TransferService extends BaseService {
     }
 
     protected List<TransactionView> findByAccount(Long account) {
-        var transfers = repo.getTransfersByAccountFrom(account)
+        return repo.getTransfersByAccount(account)
                 .stream()
                 .map(t -> {
-                    t.setValue(t.getValue().negate());
-                    return toDto(t, Operation.transferSend);
+                    if(t.getAccountFrom().equals(account)) {
+                        t.setValue(t.getValue().negate());
+                        return toDto(t, Operation.transferSend);
+                    }
+                    return toDto(t, Operation.transferReceived);
                 })
-                .collect(Collectors.toList());
-        transfers.addAll(repo.getTransfersByAccountTo(account)
-                .stream()
-                .map(t -> toDto(t, Operation.transferReceived))
-                .toList());
-        return transfers;
+                .toList();
     }
 
 }
