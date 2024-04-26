@@ -20,7 +20,7 @@ public class TransferService extends BaseService {
         return toDto(repo.save(fromDto(requestDto)));
     }
 
-    protected List<TransactionView> findByAccount(Long account) {
+    public List<TransactionView> findByAccount(Long account) {
         return repo.getTransfersByAccount(account)
                 .stream()
                 .map(t -> {

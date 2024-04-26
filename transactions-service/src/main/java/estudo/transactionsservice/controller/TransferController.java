@@ -2,6 +2,8 @@ package estudo.transactionsservice.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +38,24 @@ public class TransferController extends BaseController {
                     return getResponse("Saldo insuficiente", HttpStatus.BAD_REQUEST);
                 }
                 return getResponse(transferService.save(request), HttpStatus.OK);
+            }
+            return getResponse((String) isValid, HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return getResponse(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("{account}")
+    public ResponseEntity<Object> getTransfers(@PathVariable Long account) {
+        try {
+            var isValid = validation.validateAccount(account);
+            if (isValid instanceof Boolean && (Boolean) isValid) {
+                var transfers = transferService.findByAccount(account);
+                if (transfers.isEmpty()) {
+                    return getResponse(String.format("Não existem transferências para a conta nº %s", account),
+                            HttpStatus.NOT_FOUND);
+                }
+                return getResponse(transfers, HttpStatus.OK);
             }
             return getResponse((String) isValid, HttpStatus.NOT_FOUND);
         } catch (Exception e) {
