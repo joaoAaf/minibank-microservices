@@ -1,14 +1,13 @@
-package estudo.accountservice;
+package estudo.apigateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-// @EnableDiscoveryClient
-public class AccountServiceApplication {
+public class ApiGatewayApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AccountServiceApplication.class, args);
+		SpringApplication.run(ApiGatewayApplication.class, args);
 	}
 
 }
