@@ -15,14 +15,6 @@ public class AccountValidationService {
 
     private final AccountRequest request;
 
-    public Object validateAccount(Long account) {
-        var response = request.getUserAccount(account);
-        if (Objects.isNull(response.data())) {
-            return response.msg();
-        }
-        return true;
-    }
-
     public Object validateAccount(Long ...accounts) {
         for (var account : accounts) {
             var response = request.getUserAccount(account);
