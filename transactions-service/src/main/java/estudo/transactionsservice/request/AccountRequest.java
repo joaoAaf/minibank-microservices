@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import estudo.transactionsservice.dto.ResponseData;
 
-@FeignClient(name = "account-service", url = "localhost:8000")
+@FeignClient(name = "account-service")
 public interface AccountRequest {
 
     @GetMapping("/account/{account}")
